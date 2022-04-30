@@ -7,3 +7,6 @@ class Hilo(models.Model):
     contenido = models.TextField()
     comision = models.IntegerField()
     posteador = models.CharField(max_length=255)
+
+    def __str__(self):
+        return f"[{self.tema}] {self.titulo}"
