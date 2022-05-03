@@ -1,0 +1,24 @@
+{% extends 'layout.html' %}
+
+
+{% block contenido %}
+    <h1>Profesores</h1>
+    <a href="{% url 'NuevoProfesor' %}">Nuevo profesor</a>
+    <ul style="max-width: 60vw;">
+        {% for profe in profesores %}
+            <li>
+                <a href="{% url 'VerProfesor' profe.id %}">
+                    {{ profe }}
+                </a>
+                <div style="float: right;">
+                    <a href="{% url 'EditarProfesor' profe.id %}">
+                        Editar
+                    </a>
+                    <a href="{% url 'EliminarProfesor' profe.id %}">
+                        Eliminar
+                    </a>
+                </div>
+            </li>
+        {% endfor %}
+    </ul>
+{% endblock contenido %}

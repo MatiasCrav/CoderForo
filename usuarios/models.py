@@ -8,6 +8,9 @@ class Profesor(models.Model):
     descripcion = models.TextField()
     comision = models.IntegerField()
 
+    def __str__(self):
+        return f"[Profe] {self.nombre} {self.apellido}"
+
 
 class Estudiante(models.Model):
     nombre = models.CharField(max_length=255)

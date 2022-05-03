@@ -1,0 +1,12 @@
+{% extends 'layout.html' %}
+
+{% block contenido %}
+<ul>
+    <li>{{ profesor.nombre }}</li>
+    <li>{{ profesor.apellido }}</li>
+    <li>{{ profesor.email }}</li>
+    <li>{{ profesor.web }}</li>
+    <li>{{ profesor.descripcion }}</li>
+    <li>{{ profesor.comision }}</li>
+</ul>
+{% endblock contenido %}
