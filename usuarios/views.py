@@ -6,10 +6,6 @@ from usuarios.models import Estudiante, Profesor
 from .forms import FormProfesor
 
 
-def inicio(request):
-    return render(request, "usuarios/inicio.html")
-
-
 def profesores(request):
     profes = Profesor.objects.all()
     return render(request, "usuarios/profesores.html", {"profesores": profes})

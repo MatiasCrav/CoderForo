@@ -4,7 +4,7 @@ from .models import Hilo
 
 
 def inicio(request):
-    return HttpResponse("Hola mundo")
+    return render(request, "paginas/inicio.html")
 
 
 def buscar_comision(request, comision):
