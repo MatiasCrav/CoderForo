@@ -1,5 +1,6 @@
 from django import forms
 
+
 class FormProfesor(forms.Form):
     nombre = forms.CharField(max_length=255)
     apellido = forms.CharField(max_length=255)

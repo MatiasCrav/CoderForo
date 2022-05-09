@@ -1,0 +1,24 @@
+{% extends 'layout.html' %}
+
+
+{% block contenido %}
+    <h1>Estudiantes</h1>
+    <a href="{% url 'NuevoEstudiante' %}">Nuevo estudiante</a>
+    <ul style="max-width: 60vw;">
+        {% for est in estudiante_list %}
+            <li>
+                <a href="{% url 'VerEstudiante' est.id %}">
+                    {{ est }}
+                </a>
+                <div style="float: right;">
+                    <a href="{% url 'EditarEstudiante' est.id %}">
+                        Editar
+                    </a>
+                    <a href="{% url 'EliminarEstudiante' est.id %}">
+                        Eliminar
+                    </a>
+                </div>
+            </li>
+        {% endfor %}
+    </ul>
+{% endblock contenido %}

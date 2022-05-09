@@ -1,0 +1,12 @@
+{% extends 'layout.html' %}
+
+{% block contenido %}
+<form method="POST" action="" 
+      style="display: flex; flex-direction: column; max-width: 60vw; margin-inline: auto;"
+>
+    {% csrf_token %}
+    <h2>¿Está seguro de que desea borrar a {{ estudiante }}?</h2>
+    <input type="submit" value="Aceptar">
+    <a href="{% url 'Estudiantes' %}">Volver</a>
+</form>
+{% endblock contenido %}

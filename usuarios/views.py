@@ -1,6 +1,7 @@
-from unicodedata import name
-from urllib.request import Request
 from django.shortcuts import render, redirect
+from django.views.generic.edit import UpdateView, DeleteView, CreateView
+from django.views.generic import ListView
+from django.views.generic.detail import DetailView
 
 from usuarios.models import Estudiante, Profesor
 from .forms import FormProfesor
@@ -75,3 +76,46 @@ def eliminar_profesor(request, id):
     profe.delete()
 
     return redirect("Profesores")
+
+
+class ListarEstudiantes(ListView):
+    model = Estudiante
+    template_name = "usuarios/estudiantes.html"
+
+
+class CrearEstudiante(CreateView):
+    model = Estudiante
+    template_name = "usuarios/formEstudiantes.html"
+    success_url = "/usuarios/estudiantes/"
+    fields = (
+        "nombre",
+        "apellido",
+        "email",
+        "cursos_completados",
+        "descripcion",
+        "comision",
+    )
+
+
+class VerEstudiante(DetailView):
+    model = Estudiante
+    template_name = "usuarios/ver_estudiante.html"
+
+
+class EditarEstudiante(UpdateView):
+    model = Estudiante
+    template_name = "usuarios/formEstudiantes.html"
+    success_url = "/usuarios/estudiantes/"
+    fields = (
+        "nombre",
+        "apellido",
+        "email",
+        "cursos_completados",
+        "descripcion",
+        "comision",
+    )
+
+
+class BorrarEstudiante(DeleteView):
+    model = Estudiante
+    success_url = "/usuarios/estudiantes/"
