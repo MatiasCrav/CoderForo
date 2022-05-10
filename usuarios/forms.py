@@ -18,6 +18,21 @@ class FormProfesor(forms.Form):
     comision = forms.IntegerField()
 
 
+class FormEstudiante(forms.Form):
+    nombre = forms.CharField(max_length=255)
+    apellido = forms.CharField(max_length=255)
+
+    password1 = forms.CharField(label="Contraseña", widget=forms.PasswordInput)
+    password2 = forms.CharField(
+        label="Repita la contraseña", widget=forms.PasswordInput
+    )
+
+    email = forms.EmailField()
+    cursos_completados = forms.IntegerField(required=False)
+    descripcion = forms.CharField(widget=forms.Textarea, required=False)
+    comision = forms.IntegerField()
+
+
 class FormRegistrarse(UserCreationForm):
     email = forms.EmailField()
     password1 = forms.CharField(label="Contraseña", widget=forms.PasswordInput)

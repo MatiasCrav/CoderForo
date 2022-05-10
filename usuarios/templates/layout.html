@@ -21,7 +21,13 @@
                     <a href="#" style="text-decoration: none; margin-inline: 5px;">Link4</a>
                 </div>
                 <div>
-                    <a href="#" style="text-decoration: none; margin-inline: 5px;">Link5</a>
+                    
+                    {% if not user.is_authenticated %}
+                        <a href="{% url 'Login' %}" style="text-decoration: none; margin-inline: 5px;">Login</a>
+                    {% else %}
+                        <a href="{% url 'Logout' %}" style="text-decoration: none; margin-inline: 5px;">Logout</a>
+                    {% endif %}
+                        
                     <a href="#" style="text-decoration: none; margin-inline: 5px;">Link6</a>
                 </div>
             </nav>
