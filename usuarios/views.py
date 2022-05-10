@@ -3,8 +3,12 @@ from django.views.generic.edit import UpdateView, DeleteView, CreateView
 from django.views.generic import ListView
 from django.views.generic.detail import DetailView
 
+# from django.contrib.auth.decorators import
+# from django.contrib.auth.mixins import
+from django.contrib.auth.models import User
+
 from usuarios.models import Estudiante, Profesor
-from .forms import FormProfesor
+from .forms import FormProfesor, FormRegistrarse
 
 
 def profesores(request):
@@ -17,6 +21,7 @@ def ver_profesor(request, id):
     return render(request, "usuarios/ver_profesor.html", {"profesor": profe})
 
 
+# Solo puede un admin o el mismo profesor
 def editar_profesor(request, id):
     profe = Profesor.objects.get(id=id)
 
@@ -49,28 +54,47 @@ def editar_profesor(request, id):
     return render(request, "usuarios/formProfesores.html", {"form": mi_form})
 
 
+# Solo puede un admin
 def nuevo_profesor(request):
     if request.method == "POST":
         mi_form = FormProfesor(request.POST)
         if mi_form.is_valid():
             info = mi_form.cleaned_data
-            profe = Profesor(
-                nombre=info["nombre"],
-                apellido=info["apellido"],
-                email=info["email"],
-                web=info["web"],
-                descripcion=info["descripcion"],
-                comision=info["comision"],
-            )
 
-            profe.save()
-            return redirect("Profesores")
+            pass1 = info.get("password1")
+            pass2 = info.get("password2")
+            nombre = info.get("nombre")
+            apellido = info.get("apellido")
+            email = info.get("email")
+            data = {
+                "username": nombre + apellido,
+                "password1": pass1,
+                "password2": pass2,
+                "email": email,
+            }
+
+            form_registro = FormRegistrarse(data)
+            if form_registro.is_valid():
+                form_registro.save()
+
+                profe = Profesor(
+                    nombre=nombre,
+                    apellido=apellido,
+                    email=email,
+                    web=info.get("web"),
+                    descripcion=info.get("descripcion"),
+                    comision=info.get("comision"),
+                )
+                profe.save()
+
+                return redirect("Profesores")
 
     mi_form = FormProfesor()
 
     return render(request, "usuarios/formProfesores.html", {"form": mi_form})
 
 
+# Solo puede un admin o el mismo profesor
 def eliminar_profesor(request, id):
     profe = Profesor.objects.get(id=id)
     profe.delete()
@@ -102,6 +126,7 @@ class VerEstudiante(DetailView):
     template_name = "usuarios/ver_estudiante.html"
 
 
+# Solo puede un admin o el mismo estudiante
 class EditarEstudiante(UpdateView):
     model = Estudiante
     template_name = "usuarios/formEstudiantes.html"
@@ -116,6 +141,7 @@ class EditarEstudiante(UpdateView):
     )
 
 
+# Solo puede un admin o el mismo estudiante
 class BorrarEstudiante(DeleteView):
     model = Estudiante
     success_url = "/usuarios/estudiantes/"

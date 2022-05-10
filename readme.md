@@ -48,17 +48,16 @@ La idea de esta **primera parte** es llegar a tener las siguientes páginas func
 ## Segunda parte
 ### CRUDs
 En esta parte vamos a crear CRUDs para nuestros modelos. El objetivo sería el siguiente:
-- ***/paginas/\<comision\>***: mostrar todos los hilos del foro de la comisión.
-- ***/paginas/borrar/\<hilo\>***: eliminar un hilo.
-- ***/paginas/editar/\<hilo\>***: formulario editar un hilo.
 - ***/usuarios/estudiantes/\<comision\>***: mostrar todos los estudiantes de una comisión.
-- ***/usuarios/estudiantes/registrar***: formulario para crear un estudiante.
+- ***/usuarios/nuevo_estudiante/***: formulario para crear un estudiante.
 - ***/usuarios/estudiantes/editar/\<nombre?\>***: formulario para editar un estudiante.
 - ***/usuarios/estudiantes/eliminar/\<nombre?\>***: eliminar un estudiante.
 - ***/usuarios/profesores/\<comision\>***: mostrar todos los profesores de una comisión.
-- ***/usuarios/profesores/registrar***: formulario para crear un profesor.
+- ***/usuarios/nuevo_profesor/: formulario para crear un profesor.
 - ***/usuarios/profesores/editar/\<nombre?\>***: formulario para editar un profesor.
 - ***/usuarios/profesores/eliminar/\<nombre?\>***: eliminar un profesor.
 
-Si llegamos...
-- Diseño y Bootstrap
+## Tercera parte
+### Usuarios y permisos
+Vamos a hacer un registro y un login. Cualquiera puede registrarse como alumno pero solo un admin puede registrar un profesor.  
+Los hilos de una comision pueden ser creados por un usuario de esa comision, y solo pueden tocarse por el autor o un profesor.

@@ -4,9 +4,9 @@ class Profesor(models.Model):
     nombre = models.CharField(max_length=255)
     apellido = models.CharField(max_length=255)
     email = models.EmailField()
-    web = models.CharField(max_length=255)
-    descripcion = models.TextField()
-    comision = models.IntegerField()
+    web = models.CharField(max_length=255, blank=True, null=True)
+    descripcion = models.TextField(blank=True, null=True)
+    comision = models.IntegerField(blank=True, null=True)
 
     def __str__(self):
         return f"[Profe] {self.nombre} {self.apellido}"
